@@ -52,7 +52,7 @@ def cadastro(request):
 def logar(request):
     if request.method == "GET":
         if request.user.is_authenticated:
-            return redirect('/')
+            return redirect('/pacientes')
         return render(request, 'logar.html')
     elif request.method == "POST":
         usuario = request.POST.get('usuario')
@@ -66,7 +66,7 @@ def logar(request):
             return redirect('/auth/logar')
         else:
             auth.login(request, usuario)
-            return redirect('/')
+            return redirect('/pacientes')
 
 
 def sair(request):
@@ -85,3 +85,4 @@ def ativar_conta(request, token):
     token.save()
     messages.add_message(request, constants.SUCCESS, 'Conta ativa com sucesso')
     return redirect('/auth/logar')
+
